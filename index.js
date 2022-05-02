@@ -3,26 +3,23 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
+const {playRound, getGameState} = require("./gameState");
 const io = new Server(server);
 
 app.use(express.static('public'));
-
-
-io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' }); // This will emit the event to all connected sockets
-
 io.on('connection', (socket) => {
-    socket.broadcast.emit('hi');
+    socket.on("takeTurn", (e)=>{
+        playRound(e)
+        io.emit("roll", getGameState())
+    })
 });
+
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
-    });
-});
+
 
 server.listen(5000, () => {
     console.log('listening on *:5000');
