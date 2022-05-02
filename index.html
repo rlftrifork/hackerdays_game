@@ -5,13 +5,20 @@
     <link rel="stylesheet" href="game.css">
 </head>
 <body>
-    <h1>Bomberman</h1>
-    <div class="grid-container"></div>
+<div class="game-container">
+    <button class="dice" onclick="roll()">terning</button>
+    <button>Kylling</button>
+    <h2>Antal øjn</h2>
+    <h2>liv</h2>
+    <button>Info</button>
+</div>
 
+
+
+<script src="/socket.io/socket.io.js">
+</script>
 <script src="game.js">
 </script>
-
-<script src="/socket.io/socket.io.js"></script>
 <script>
     // var socket = io();
     //
@@ -33,6 +40,7 @@
     //     messages.appendChild(item);
     //     window.scrollTo(0, document.body.scrollHeight);
     // });
+
 </script>
 </body>
 </html>
