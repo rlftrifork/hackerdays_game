@@ -6,11 +6,17 @@
 </head>
 <body>
 <div class="game-container">
-    <button class="dice" onclick="roll()">terning</button>
-    <button>Kylling</button>
-    <h2 class="total-amount">Antal øjn</h2>
-    <h2>liv</h2>
-    <button>Info</button>
+    <button class="button-64 dice" class="dice" onclick="roll()" role="button"><span class="text">Terning</span></button>
+<!--    <button >terning</button>-->
+    <button class="button-64 chicken" role="button"><span class="text">Kylling</span></button>
+<!--    <button class="chicken">Kylling</button>-->
+    <div class="amount-container">
+        <h2>Antal øjne </h2>
+        <h2 class="total-amount"> 0</h2>
+    </div>
+
+    <h2 class="current-player-hp">liv</h2>
+    <button class="button-64 game-info" role="button"><span class="text">info</span></button>
 </div>
 
 
