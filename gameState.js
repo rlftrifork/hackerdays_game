@@ -1,15 +1,12 @@
 let players = []
-let currentRound = {amount: 0, currentPlayer: 0}
+let playerIndex = 0
+let currentRound = {amount: 0, currentPlayer: playerIndex}
 let dice = 0
-//
-// const addPlayerToGame = () => {
-//     players.push({name: "Test", hp: 6})
-// }
 
 const resetGame = () =>{
     players.forEach(p=>p.hp = 6)
-    dice = "Du har tabt"
-    currentRound = {amount: 0, currentPlayer: 0}
+    dice = 0
+    currentRound = {amount: 0, currentPlayer: players[0]}
 }
 
 const playRound = (state) =>{
@@ -24,14 +21,17 @@ const playRound = (state) =>{
     if (currentRound.amount >= 16){
         resetGame()
     } else {
-        if (players.length - 1 === currentRound.currentPlayer){
+        if (players.length === playerIndex + 1){
             //Reset if it's the last players turn
-            currentRound.currentPlayer = 0
+            currentRound.currentPlayer = players[0].name
+            playerIndex = 0
         } else {
             // Else next player
-            currentRound.currentPlayer++
+            playerIndex++
+            if (players.length > 0) currentRound.currentPlayer= players[playerIndex].name
         }
     }
+
 }
 
 function rollDice (){
