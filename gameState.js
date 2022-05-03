@@ -14,7 +14,7 @@ const playRound = (state) =>{
         rollDice()
     }
     if (state === "chicken"){
-        players[currentRound.currentPlayer].hp -=1
+        players[playerIndex].hp -=1
     }
 
     //Tab eller næste

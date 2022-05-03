@@ -22,6 +22,7 @@ lobby.appendChild(nameInput)
 gameContainer.appendChild(lobby)
 
 socket.on("update", (gameState)=>{
+    console.log(gameState)
     updateUI(gameState)
 })
 
