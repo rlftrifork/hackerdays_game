@@ -1,15 +1,10 @@
 const gameState = {}
-
 const socket = io();
 
 const dice = document.querySelector(".dice")
-
 const totalAmount = document.querySelector(".total-amount")
-
 const gameContainer = document.querySelector(".game-container")
 const name = document.querySelector(".name")
-
-
 const lobby = document.createElement("div")
 lobby.classList.add("fisk")
 const nameInput = document.createElement("label")
@@ -26,37 +21,26 @@ nameInput.appendChild(newButton)
 lobby.appendChild(nameInput)
 gameContainer.appendChild(lobby)
 
-socket.on("update", (d)=>{
-    console.log(d)
+socket.on("update", (gameState)=>{
+    updateUI(gameState)
 })
 
 function updateUI(gameState){
-
+    totalAmount.innerHTML = gameState.currentRound.amount
+    dice.innerHTML = gameState.dice
 }
 
 function roll(){
-    let fisk = 0
     socket.emit('takeTurn', "roll")
-    socket.once("roll", e=>{
-        fisk += 1
-        console.log(fisk)
-        console.log(e)
-        // dice.innerHTML = e
-        totalAmount.innerHTML = e.currentRound.amount
-    })
 }
+
 function chicken(){
-    socket.emit('takeTurn',"chicken")
+    socket.emit('takeTurn', "chicken")
 }
 
 const submitNewPlayer=()=>{
-    console.log(newInput.value)
-
-
     postData('http://localhost:5000/add', {name: newInput.value }).then(data=>{
-        console.log(data)
         name.innerHTML = data.name
-
     })
     lobby.remove()
 }
