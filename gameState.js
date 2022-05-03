@@ -11,8 +11,8 @@ const addPlayerToGame = () => {
 
 const resetGame = () =>{
     players.forEach(p=>p.hp = 6)
+    dice = "Du har tabt"
     currentRound = {amount: 0, currentPlayer: 0}
-    dice = 0
 }
 
 const playRound = (state) =>{
@@ -25,7 +25,7 @@ const playRound = (state) =>{
 
     //Tab eller næste
     if (currentRound.amount >= 16){
-        console.log("Tabt")
+        resetGame()
     } else {
         if (players.length - 1 === currentRound.currentPlayer){
             //Reset if it's the last players turn

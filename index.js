@@ -13,7 +13,9 @@ io.on('connection', (socket) => {
         playRound(e)
         if (e === "roll") {
             io.emit("roll", getGameState()) 
-        } else if (e === "chicken") {
+        } 
+        
+        if (e === "chicken") {
             io.emit("chicken", getGameState())
         }
         
