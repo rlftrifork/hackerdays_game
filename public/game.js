@@ -2,24 +2,26 @@ const gameState = {}
 const socket = io();
 
 const dice = document.querySelector(".dice")
+const hp = document.querySelector(".current-player-hp")
 const totalAmount = document.querySelector(".total-amount")
 const gameContainer = document.querySelector(".game-container")
 const name = document.querySelector(".name")
 const lobby = document.createElement("div")
-lobby.classList.add("fisk")
+lobby.classList.add("lobby")
+
 const nameInput = document.createElement("label")
 const newInput = document.createElement("input")
 const newButton = document.createElement("button")
 newButton.onclick =()=> submitNewPlayer()
 newInput.type = "text"
 newButton.innerHTML = "Tilføj ny spiller"
+
 nameInput.appendChild(newInput)
 nameInput.appendChild(newButton)
-
-
-
 lobby.appendChild(nameInput)
 gameContainer.appendChild(lobby)
+
+let clientName = ""
 
 socket.on("update", (gameState)=>{
     console.log(gameState)
@@ -29,6 +31,7 @@ socket.on("update", (gameState)=>{
 function updateUI(gameState){
     totalAmount.innerHTML = gameState.currentRound.amount
     dice.innerHTML = gameState.dice
+    hp.innerHTML = gameState.players.find(p => p.name === clientName).hp
 }
 
 function roll(){
@@ -42,6 +45,7 @@ function chicken(){
 const submitNewPlayer=()=>{
     postData('http://localhost:5000/add', {name: newInput.value }).then(data=>{
         name.innerHTML = data.name
+        clientName = data.name
     })
     lobby.remove()
 }

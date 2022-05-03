@@ -28,7 +28,7 @@ html, body {
     border-radius: 50%;
     padding: 20px;
 }
-.current-player-hp{
+.current-player-hp-container{
     position: absolute;
     top: 1%;
     right: 1%;
@@ -103,7 +103,7 @@ html, body {
         min-width: 196px;
     }
 }
-.fisk{
+.lobby{
     background-color: white;
     position: absolute;
     top: 50%;
