@@ -1,13 +1,10 @@
-let players = [
-    { name: "",
-    hp: 6 }
-]
+let players = []
 let currentRound = {amount: 0, currentPlayer: 0}
 let dice = 0
-
-const addPlayerToGame = () => {
-    players.push({name: "Test", hp: 6})
-}
+//
+// const addPlayerToGame = () => {
+//     players.push({name: "Test", hp: 6})
+// }
 
 const resetGame = () =>{
     players.forEach(p=>p.hp = 6)
@@ -52,8 +49,18 @@ const getGameState = () => {
     return {players, currentRound, dice}
 }
 
+const submitNewPlayer=(player)=>{
+players.push({
+    name: player.name,
+    hp:6
+})
+    console.log(players)
+}
+
+
+
 module.exports = {
+    submitNewPlayer,
     playRound,
-    getGameState,
-    addPlayerToGame
+    getGameState
 }
